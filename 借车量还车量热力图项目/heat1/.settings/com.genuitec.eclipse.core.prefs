@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/scripts/heatmap.js,WebRoot/scripts/jquery-2.2.3.min.js,WebRoot/scripts/stations_baidu.json,WebRoot/scripts/zhejiang.json,WebRoot/scripts/Mapv.min.js,WebRoot/scripts/jquery-ui.min.js,WebRoot/scripts/echarts.min.js
+validator.Unchecked=

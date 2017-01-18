@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>heat1</display-name>
+  
+  <servlet>
+  <servlet-name>getHeatMapData</servlet-name>
+  <servlet-class>servlets.getHeatMapData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>getHeatMapData</servlet-name>
+  <url-pattern>/servlets/getHeatMapData</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>getHeatMapByDay</servlet-name>
+  <servlet-class>servlets.getHeatMapByDay</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>getHeatMapByDay</servlet-name>
+  <url-pattern>/servlets/getHeatMapByDay</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>searchStation</servlet-name>
+  <servlet-class>servlets.searchStation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>searchStation</servlet-name>
+  <url-pattern>/servlets/searchStation</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>getWeather</servlet-name>
+  <servlet-class>servlets.getWeather</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>getWeather</servlet-name>
+  <url-pattern>/servlets/getWeather</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

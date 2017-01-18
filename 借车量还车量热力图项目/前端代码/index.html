@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自行车站点借车量热力图</title>
+	<link rel="stylesheet" href="styles/jquery-ui.min.css">
+	<link rel="stylesheet" href="styles/index.css">
+	<script type="text/javascript" src="scripts/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
+</head>
+<body>
+	<div class="mainbody">
+		<div id="map"></div>
+		<div id="manager">
+			<div class="tabpage">
+				<ul>
+					<li class="using-tab">城市级</li>
+					<li>城市级</li>
+					<li>城市级</li>
+				</ul>
+			</div>
+			<div class="user-manager">
+				<div class="show-station">
+					<span>站点热力分布图</span>
+					<button type="button">站点热力图</button>
+					<br>
+					<form style="margin-top:5px;">
+						<input id="_use-style1" type="radio" name="use-style" value="1" checked>
+						<label for="_use-style1">借车量</label>
+						<input id="_use-style2" type="radio" name="use-style" value="2">
+						<label for="_use-style2">还车量</label>
+					</form>
+				</div>
+				<div id="manager-one">
+					<span>按小时比较：</span>
+					<label for="date1">请选择日期：</label>
+					<input id="date1" type="date" name="date" value="2014-04-01">
+					<label for="time1">&nbsp请选择时刻：</label>
+					<select id="time1" name="time">
+						<option value="06">6</option>
+						<option value="07">7</option>
+						<option value="08">8</option>
+						<option value="09">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12" selected>12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+					</select>
+					<button id="heat-map" type="button">生成热力图</button>
+					<span class="max-min">最大值：0；最小值：0</span>
+				</div>
+				<div id="manager-two" style="margin-top:10px;">
+				<span>按日比较：</span>
+					<label for="date2">请选择日期：</label>
+					<input id="date2" type="date" name="date" value="2014-04-01">
+					<button id="heat-map2" type="button">生成热力图</button>
+					<span class="max-min">最大值：0；最小值：0</span>
+				</div>
+				<div id="set-level-max" style="margin-top: 10px;">
+					<label for="_set-max">设置标尺最大值：</label>
+					<input id="_set-max" type="text" value="100">
+				</div>
+			</div>
+			<div class="chart">
+				<div id="chart-one"></div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=z3rHgI6QkD0GKIP2xjnqKM18"></script>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       
+	<script type="text/javascript" src="scripts/heatmap.js"></script>
+	<script type="text/javascript" src='scripts/createMap.js'></script>
+	<!-- <script type="text/javascript" src="scripts/echarts.min.js"></script> -->
+	<script type="text/javascript" src="scripts/zhejiang.js"></script>
+	<script type="text/javascript" src="scripts/createChart.js"></script>
+</body>
+</html>
