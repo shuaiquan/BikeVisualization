@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>站点信息</title>
+    <link rel="stylesheet" href="js/jquery-ui.css">
+    <link rel="stylesheet" href="js/DrawingManager_min.css">
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	html,body {
+    		width: 100%;
+    		height: 100%;
+    	}
+    	body .content {
+    		margin: 0 auto;
+    		width: 1100px;
+    	}
+    	#station-map {
+    		width: 1100px;
+    		height: 720px;
+    	}
+    	.content .user-control {
+    		margin-top: 10px;
+    		width: 1100px;
+    	}
+    </style>
+
+  </head>
+  
+  <body>
+  	<div class="content">
+  		<div id="station-map"></div>
+  		<div class="user-control">
+  			<P>按站点查看社团关系：</P>
+  			选择日期或小时：
+			<input type="text" class="date" value="2014-04-01" readonly>
+			<select class="select">
+				<option value="00">按天</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12" selected>12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>                 
+            </select>
+			<button type="button" class="create-file">生成站点间关联文件</button>	
+            <button type="button" class="show-chosen-station">展示站点间关联</button>
+            <button type="button" class="show-stations">展示全部站点</button>
+            <br><br>
+            <p>按聚类查看社团关系：</p>
+          	输入聚类数：
+            <input type="text" class="k" value="30">
+            <button type="button" class="show-classify">展示聚类</button>
+            <button type="button" class="show-kcenter">展示各个聚类的中心点</button>
+            <br>
+           	选择日期或小时：
+            <input type="text" class="kdate" value="2014-04-01" readonly>
+			<select class="kselect">
+				<option value="00">按天</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12" selected>12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>                 
+            </select>
+			<button type="button" class="create-file2">生成聚类间关联文件</button>
+			<br><br>
+  		</div>
+  	</div>
+    
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=z3rHgI6QkD0GKIP2xjnqKM18"></script>
+    <script src="js/TextIconOverlay.js"></script>
+    <script src="js/MarkerClusterer.js"></script>
+    <script src="js/DrawingManager_min.js"></script>
+    <script src="js/GeoUtils.js"></script>
+    <script src="js/CurveLine.min.js"></script>
+    <script src="js/Map.js"></script>
+    <script>
+    	$(function(){
+			$('.date').datepicker({
+    			dateFormat: 'yy-mm-dd'
+    		});
+			$('.kdate').datepicker({
+				dateFormat: 'yy-mm-dd'
+			});
+
+    		var map = new Map();
+    		map.initMap();
+    		$('.create-file').click(function(){
+    			var date = $('.date').val();
+    			var time = $('.select').find('option:selected').val();
+    			console.log(date, time);
+    			if( time == '00' ){
+   					map.createFileByDay(date);
+    			}else{
+    				map.createFile(date, time);
+    			}
+    			
+    		});
+
+    		$('.show-stations').click(function(){
+                //map.getStations();
+                map.map.reset();
+                map.map.clearOverlays();
+                map.getStations();
+                map.circleStyle = 1;
+            });
+
+            $('.show-chosen-station').click(function(){
+            	map.getClassify();
+            });
+
+            $('.show-classify').click(function(){
+            	var k = $('.k').val();
+            	console.log(k);
+            	map.showAllClassify(k);
+            });
+            
+            $('.show-kcenter').click(function(){
+            	map.showKcenter();
+            });
+            
+            $('.create-file2').click(function(){
+            	var date = $('.kdate').val();
+            	var time = $('.kselect').find('option:selected').val();
+            	map.findKrelationship(date, time);
+            	
+            });
+    	});
+    </script>
+  </body>
+</html>
