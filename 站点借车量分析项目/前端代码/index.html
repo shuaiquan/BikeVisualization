@@ -1,0 +1,118 @@
+<!Doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>交通数据可视化</title>
+    <link rel="stylesheet" type="text/css" href="styles/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    <script type="text/javascript" src="scripts/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="myMap"></div>
+      <div id="myManager">
+        <div class="manager-tab">
+          <ul>
+            <li id="tabOne" class="using-tab">
+              单站点按小时
+            </li>
+            <li id="tabTwo">
+              单站点按日
+            </li>
+            <li id="tabThree">
+              多站点比较
+            </li>
+          </ul>
+        </div>
+        <div class="manager-area">
+          <div id="managerOne" class="using-manager">
+            <div class="manager-one-station-name">
+              <p>您选择的站点为：&nbsp&nbsp<strong>暂未选择</strong></p>
+            </div>
+            <div class="manager-one-operate">
+              <div class="manager-one-operate-left">
+                <button type="button" id="manager-one-add-date">点我开始选择时间</button>
+              </div>
+              <div class="manager-one-operate-middle">
+                <!-- <div class="select-time">
+                  <input type="text" readonly value="2014-04-01" id="date1" title="点我可以添加或者删除时间">
+                  <div class="add-delete">
+                    <ul>
+                      <li class="add-date" title="点我可以添加时间">+</li>
+                      <li class="delete-date" title="点我可以删除时间">x</li>
+                    </ul>
+                  </div>
+                </div> -->
+              </div>
+              <div class="manager-one-operate-right">
+                <button id="cleanOne" class="clean">Clear</button>
+              </div>
+            </div>
+          </div>
+          <div id="managerTwo" class="free-manager">
+            <div class="manager-two-station-name">
+              <p>您选择的站点为：&nbsp&nbsp<strong>暂未选择</strong></p>
+            </div>
+            <div class="manager-two-operate">
+              <div class="manager-two-operate-left">
+                <button type="button" id="manager-two-add-week">点我开始选择周</button>
+              </div>
+              <div class="manager-two-operate-middle"></div>
+              <div class="manager-two-operate-right">
+                <button id="cleanTwo" class="clean">Clear</button>
+              </div>
+            </div>
+          </div>
+          <div id="managerThree" class="free-manager">
+            <div class="manager-three-operate">
+              <div class="manager-three-top">
+                <div class="manager-three-operate-left">
+                  <button type="button" id="manager-three-add-station">点我开始选择站点</button>
+                  <button type="button" id="manager-three-related-station" style="margin-top:10px;">选择关联站点</button>
+                </div>
+                <div class="manager-three-operate-middle">
+                  <!-- <div class="station-name" id="1">
+                    <p>杭州电子科技大学计算机</p>
+                    <ul>
+                      <li class="delete-station">x</li>
+                    </ul>
+                  </div> -->
+                </div>
+                <div class="manager-three-oprate-right">
+                  <button id="cleanThreeStations" class="clean">Clear</button>
+                </div>
+              </div>
+              <div class="manager-three-bottom">
+                <div class="manager-three-operate-left">
+                  <button type="button" id="manager-three-add-date">点我开始选择时间</button>
+                </div>
+                <div class="manager-three-operate-middle"></div>
+                <div class="manager-three-oprate-right">
+                  <button id="cleanThreeDate" class="clean">Clear</button>
+                </div>
+              </div>
+          </div>
+        </div>
+          <div id="manager-time-bucket" style="display: none;"></div>
+          <div id="manager-buttons">
+            <button type="button" id="createChart">生成图表</button>
+            <button type="button" id="sortAll">按总量排序</button>
+          </div>
+        </div>
+      </div>
+      <div id="mychart"></div>
+    </div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=z3rHgI6QkD0GKIP2xjnqKM18"></script>
+    <script type="text/javascript" src="scripts/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="scripts/GeoUtils_min.js"></script>
+    <script type="text/javascript" src="scripts/TextIconOverlay_min.js"></script>
+    <script type="text/javascript" src="scripts/MarkerClusterer_min.js"></script>
+    <script type="text/javascript" src="scripts/CurveLine.min.js"></script>
+    <script type="text/javascript" src="scripts/tabFunc.js"></script>
+    <script type="text/javascript" src="scripts/createMap.js"></script>
+    <script type="text/javascript" src="scripts/echarts.common.min.js"></script>
+    <script type="text/javascript" src="scripts/createChart.js"></script>
+  </body>
+</html>

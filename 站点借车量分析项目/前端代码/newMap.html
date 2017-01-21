@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多站点空间比较</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	#newMap{
+		width: 100%;
+		height: 100%;
+
+		background-image: url(images/map.jpg);
+	}
+	</style>
+</head>
+<body>
+	<div id="newMap"></div>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=z3rHgI6QkD0GKIP2xjnqKM18"></script>
+	<script type="text/javascript" src="scripts/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript">
+	var CreateWindowMap  = function(element){
+		this.newMap = new BMap.Map(element);
+		
+		this.initMap = function(lng,lat,zoom){
+			var point = new BMap.Point(lng,lat);
+			this.newMap.centerAndZoom(point,zoom);
+			this.newMap.enableAutoResize();
+			this.initControl();
+			return this;
+		};
+		
+		this.initControl = function(){
+			this.newMap.addControl(new BMap.NavigationControl());		//地图平移缩放控件
+			this.newMap.addControl(new BMap.OverviewMapControl());		//可折叠缩略图控件
+		};
+		
+		this.getData = function(){
+			var stations = [];
+			var num = [];
+			stations = JSON.parse(localStorage.stations);
+			num = JSON.parse(localStorage.num);
+			
+			var max=0;
+			var min = 1000000;
+			for(var i=0;i<num.length;i++){
+				if(num[i]>max){
+					max = num[i];
+				}
+				if(num[i]<min){
+					min = num[i];
+				}
+			}
+			this.createOverlay(stations, num, max,min);
+			//this.createSquare(stations, num, max,min);
+			//this.creteTriangle(stations, num, max, min);
+		};
+		
+		this.createOverlay = function(stations,num,max,min){
+			var colors = ['#962930','#e45212','#ed7623','#fcb441','#5c9333','#aca43a'];
+			var points = [];
+			var point;
+			var radius;
+			var opacity;
+			var circleOption = {
+					strokeColor: 'red',
+					fillColor: 'red',
+					fillOpacity: 0.95,
+					strokeWeight: 1
+			}
+			for(var i=0;i<stations.length;i++){
+				point = new BMap.Point(stations[i].lng,stations[i].lat);
+				points.push(point);
+				
+				if(num[i]==0){
+					radius = 0;
+					opacity = 0;
+				}else{
+					radius = (num[i]/max)*100;
+					opacity = (num[i]-min)/(max-min)*0.8+0.2;
+				}
+				console.log(opacity);
+				var circle = new BMap.Circle(point,radius,circleOption);
+				circle.setFillOpacity(opacity);
+				circle.enableMassClear();
+				this.newMap.addOverlay(circle);
+			}
+			this.newMap.setViewport(points);
+			this.newMap.setZoom(15);
+		};
+		
+		this.createSquare = function(stations,num,max,min,color){
+			var points = [];
+			var squarePoints = [];
+			var point;
+			var r = 0;
+			var opacity;
+			
+			var squareOption = {
+				strokeColor: 'red',
+				fillColor: 'red',
+				fillOpacity: 0.95,
+				strokeWeight: 1
+			};
+			for(var i=0;i<stations.length;i++){
+				point = new BMap.Point(stations[i].lng,stations[i].lat);
+				points.push(point);
+
+				if(num[i]==0){
+					r = 0;
+					opacity = 0;
+				}else{
+					r = (num[i]/max)*0.001;
+					opacity = (num[i]-min)/(max-min)*0.8+0.2;
+				}
+				
+				squarePoints.push(new BMap.Point(parseFloat(stations[i].lng)-r,parseFloat(stations[i].lat)+r));
+				squarePoints.push(new BMap.Point(parseFloat(stations[i].lng)+r,parseFloat(stations[i].lat)+r));
+				squarePoints.push(new BMap.Point(parseFloat(stations[i].lng)+r,parseFloat(stations[i].lat)-r));
+				squarePoints.push(new BMap.Point(parseFloat(stations[i].lng)-r,parseFloat(stations[i].lat)-r));
+				//console.log(squarePoints);
+				var square = new BMap.Polygon(squarePoints,squareOption);
+				square.setFillOpacity(opacity);
+				square.enableMassClear();
+				this.newMap.addOverlay(square);
+				squarePoints = [];
+			}
+			this.newMap.setViewport(points);
+			this.newMap.setZoom(15);
+		};
+		
+		this.creteTriangle = function(stations,num,max,min){
+			var points = [];
+			var anglePoints = [];
+			var point;
+			var opacity;
+			var r = 0;
+			
+			var triangleOption = {
+					strokeColor: 'red',
+					fillColor: 'red',
+					fillOpacity: 0.95,
+					strokeWeight: 1
+				};
+			
+			for(var i=0;i<stations.length;i++){
+				point = new BMap.Point(stations[i].lng,stations[i].lat);
+				points.push(point);
+				
+				if(num[i]==0){
+					r = 0;
+					opacity = 0;
+				}else{
+					r = (num[i]/max)*0.0015;
+					opacity = (num[i]-min)/(max-min)*0.8+0.2;
+				}
+				
+				anglePoints.push(new BMap.Point(parseFloat(stations[i].lng),parseFloat(stations[i].lat)+r));
+				anglePoints.push(new BMap.Point(parseFloat(stations[i].lng)-1.732*r/2,parseFloat(stations[i].lat)-r/2));
+				anglePoints.push(new BMap.Point(parseFloat(stations[i].lng)+1.732*r/2,parseFloat(stations[i].lat)-r/2));
+				
+				var triangle = new BMap.Polygon(anglePoints,triangleOption);
+				triangle.setFillOpacity(opacity);
+				triangle.enableMassClear();
+				this.newMap.addOverlay(triangle);
+				anglePoints = [];
+			}	
+			this.newMap.setViewport(points);
+			this.newMap.setZoom(15);
+		};
+			
+	};
+	
+	$(function(){
+		var newMap = new CreateWindowMap('newMap');
+		newMap.initMap(120.164785,30.2803185,14).getData();
+	});
+	
+	</script>
+</body>
+</html>

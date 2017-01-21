@@ -1,0 +1,230 @@
+*{margin:0;padding:0;}
+li{list-style: none;}
+html,body{
+	width: 100%;
+	height: 100%;
+}
+body .container{
+	width: 1200px;
+	margin: 0 auto;
+}
+#myMap{
+	width:100%;
+	height: 600px;
+}
+
+
+#myManager{
+	width: 100%;
+	/*height: 200px;*/
+	margin-top: 5px;
+}
+#myManager .manager-tab{
+	width: 100%;
+	height: 40px;
+
+	position: relative;
+}
+#myManager .manager-tab ul li{
+	width: 150px;
+	height: 40px;
+
+	list-style:none;
+	margin-right: 10px;
+	float: left;
+	border:1px solid #27decc;
+	border-bottom: none;
+	font-size: 20px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 5px 5px 0 0;
+	font-weight: bold;
+	cursor: pointer;
+}
+#myManager .manager-tab ul li.using-tab{
+	background-color: #27decc;
+	color: #fff;
+}
+
+#myManager .manager-area{
+	width: inherit;
+	border-top:1px solid #27decc;
+}
+#myManager .using-manager{
+	display: block;
+}
+#myManager .free-manager{
+	display: none;
+}
+#managerOne,#managerTwo,#managerThree{
+	width: inherit;
+}
+#managerOne .manager-one-station-name,#managerTwo .manager-two-station-name{
+	width: inherit;
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+}
+#managerOne .manager-one-operate,#managerTwo .manager-two-operate{
+	width: inherit;
+	height: 100px;
+	position: relative;
+}
+#managerOne .manager-one-operate .manager-one-operate-left,#managerTwo .manager-two-operate .manager-two-operate-left{
+	width: 150px;
+	height: inherit;
+	display: inline-block;
+	position: relative;
+}
+#managerOne .manager-one-operate .manager-one-operate-middle,#managerTwo .manager-two-operate .manager-two-operate-middle{
+	width: 950px;
+	height: inherit;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 150px;
+	overflow: auto;
+}
+#managerOne .manager-one-operate .manager-one-operate-right,#managerTwo .manager-two-operate .manager-two-operate-right{
+	width: 100px;
+	height: inherit;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#managerOne .manager-one-operate .manager-one-operate-middle .select-time,#managerTwo .manager-two-operate .manager-two-operate-middle .select-time,#managerThree .select-time{
+	width: 148px;
+	height: 28px;
+	border:1px solid #5BF871;
+	margin-right: 2px;
+	margin-bottom: 1px;
+	display: inline-block;
+
+	position: relative;
+}
+#managerOne .manager-one-operate .manager-one-operate-middle .select-time input,#managerTwo .manager-two-operate .manager-two-operate-middle .select-time input,#managerThree .select-time input{
+	width: 148px;
+	height: 28px;
+	border:none;
+	outline: none;
+}
+#managerOne .manager-one-operate .manager-one-operate-middle .select-time .add-delete,#managerTwo .manager-two-operate .manager-two-operate-middle .select-time .add-delete,#managerThree .select-time .add-delete{
+	width: 32px;
+	height: 28px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#managerOne .manager-one-operate .manager-one-operate-middle .select-time .add-delete li,#managerTwo .manager-two-operate .manager-two-operate-middle .select-time .add-delete li,#managerThree .select-time .add-delete li{
+	width: 14px;
+	height: 14px;
+	margin-top: 7px;
+	margin-right: 2px;
+	list-style: none;
+	float: left;
+	line-height: 14px;
+	text-align: center;
+	cursor: pointer;
+}
+#managerOne .manager-one-operate .manager-one-operate-middle .select-time .add-delete li.add-date:hover,#managerTwo .manager-two-operate .manager-two-operate-middle .select-time .add-delete li.add-week:hover,#managerThree .select-time .add-delete li.add-date:hover{
+	border-radius: 50%;
+	background-color: #27decc;
+}
+#managerOne .manager-one-operate .manager-one-operate-middle .select-time .add-delete li.delete-date:hover,#managerTwo .manager-two-operate .manager-two-operate-middle .select-time .add-delete li.delete-week:hover,#managerThree .select-time .add-delete li.delete-date:hover{
+	border-radius: 50%;
+	background-color: #EE4E4E;
+}
+
+
+#managerThree{
+	width: inherit;
+
+	position:relative;
+}
+#managerThree .manager-three-operate{
+	width: inherit;
+	height: 200px;
+	position: relative;
+}
+#managerThree .manager-three-operate .manager-three-top,#managerThree .manager-three-operate .manager-three-bottom{
+	width: inherit;
+	height: 100px;
+	position: relative;
+}
+#managerThree .manager-three-operate-left{
+	width: 150px;
+	height: inherit;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#managerThree .manager-three-operate-right{
+	width: 100px;
+	height: inherit;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#managerThree .manager-three-operate-middle{
+	width: 950px;
+	height: inherit;
+	position: absolute;
+	top: 0;
+	left: 150px;
+	overflow: auto;
+}
+#managerThree .station-name{
+	width: 148px;
+	height: 28px;
+	border:1px solid #A982B7;
+	margin-right: 2px;
+	margin-bottom: 1px;
+	line-height: 28px;
+	display: inline-block;
+	position:relative;
+	overflow: hidden;
+}
+#managerThree .station-name p{
+	font-size: 12px;
+}
+#managerThree .station-name li{
+	width: 14px;
+	height: 14px;
+	margin-top: 7px;
+	margin-right: 2px;
+	list-style: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 14px;
+	text-align: center;
+	cursor: pointer;
+}
+#managerThree .station-name li:hover{
+	background-color: #E74F4F;
+	border-radius: 50%;
+}
+#managerThree .select-time{
+	width: 148px;
+	height: 28px;
+	border:1px solid #5BF871;
+	margin-right: 2px;
+	margin-bottom: 1px;
+	display: inline-block;
+
+	position: relative;
+}
+#myManager .clean{
+	position: absolute;
+	top: 5px;
+	right: 40px;
+}
+
+
+
+
+#mychart{
+	width: inherit;
+	height:1400px;
+}
